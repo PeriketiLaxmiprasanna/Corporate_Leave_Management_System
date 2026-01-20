@@ -1,0 +1,14 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+#DATABASE_URL = "mysql+pymysql://root:1234@localhost/leave_management"
+DATABASE_URL = "mysql+pymysql://root:Laxmi%402004@localhost/leave_management"
+
+
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
