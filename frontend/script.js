@@ -326,7 +326,7 @@ function deleteLeave(id) {
 
 
 function loadHRData() {
-    // ✅ Local date (NOT UTC)
+    // Local date (NOT UTC)
     const today = new Date().toLocaleDateString("en-CA");
 
     Promise.all([
@@ -443,7 +443,7 @@ function viewManagerTeam(managerId, managerName, el) {
 
     const currentRow = el.closest("tr");
 
-    // 🔁 If next row already exists → toggle
+    //  If next row already exists → toggle
     const nextRow = currentRow.nextElementSibling;
 
     if (nextRow && nextRow.classList.contains("manager-team-row")) {
@@ -451,10 +451,10 @@ function viewManagerTeam(managerId, managerName, el) {
         return;
     }
 
-    // ❌ Close any other open manager tables
+    //  Close any other open manager tables
     document.querySelectorAll(".manager-team-row").forEach(r => r.remove());
 
-    // ➕ Create expandable row
+    //  Create expandable row
     const detailRow = document.createElement("tr");
     detailRow.className = "manager-team-row";
 
@@ -484,7 +484,7 @@ function viewManagerTeam(managerId, managerName, el) {
     detailRow.appendChild(td);
     currentRow.after(detailRow);
 
-    // 🔄 Load team data
+    // Load team data
     fetch(`${API}/hr/manager-team/${managerId}`)
         .then(res => res.json())
         .then(data => {

@@ -207,15 +207,15 @@ def approve_leave(
 
     # ----------------------------------------------------
 
-    # ❌ Cannot approve own leave
+    # Cannot approve own leave
     if approver.id == applicant.id:
         raise HTTPException(status_code=403, detail="Cannot approve your own leave")
 
-    # ✅ Manager → Employee
+    #  Manager → Employee
     if approver.role == "manager" and applicant.role == "employee":
         leave.status = "Approved"
 
-    # ✅ HR → Manager
+    # HR → Manager
     elif approver.role == "hr" and applicant.role == "manager":
         leave.status = "Approved"
 
