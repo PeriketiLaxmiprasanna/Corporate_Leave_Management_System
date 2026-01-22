@@ -75,12 +75,12 @@ def test_manager_team_flow(client):
     assert res_leave.status_code == 200
 
     # -------------------------------
-    # 2️⃣ Manager 1 can see team leaves
+    # 2️ Manager 1 can see team leaves
     # -------------------------------
     # 🔍 Find the actual manager of the employee
     assigned_manager_id = employee["manager_id"]
 
-    # 2️⃣ Assigned manager can see team leaves
+    # 2️ Assigned manager can see team leaves
     res_team_leaves = client.get(f"/manager/leaves/{assigned_manager_id}")
     assert res_team_leaves.status_code == 200
 
@@ -89,14 +89,14 @@ def test_manager_team_flow(client):
     assert team_leaves[0]["user_id"] == employee["id"]
 
     # -------------------------------
-    # 3️⃣ HR can view Manager 1 team
+    # 3️ HR can view Manager 1 team
     # -------------------------------
     res_hr = client.get(f"/hr/manager-team/{manager1['id']}")
     assert res_hr.status_code == 200
     assert isinstance(res_hr.json(), list)
 
     # -------------------------------
-    # 4️⃣ Manager 2 CANNOT approve Manager 1's employee
+    # 4️ Manager 2 CANNOT approve Manager 1's employee
     # -------------------------------
     res_approve = client.post(
         f"/approve/{team_leaves[0]['id']}/{manager2['id']}"
