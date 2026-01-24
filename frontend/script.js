@@ -28,7 +28,7 @@ function initDashboard() {
         document.getElementById("myLeavesBtn").style.display = "inline-block";
         document.getElementById("approveBtn").style.display = "inline-block";
         document.getElementById("managerDashBtn").style.display = "inline-block";
-        showApply(); // 👈 default page for manager
+        showApply(); //  default page for manager
     }
 
     // ================= HR =================

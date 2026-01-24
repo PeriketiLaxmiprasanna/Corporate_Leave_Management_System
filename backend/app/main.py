@@ -69,7 +69,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
         role=user.role
     )
 
-    # ✅ AUTO-ASSIGN MANAGER FOR EMPLOYEE
+    #  AUTO-ASSIGN MANAGER FOR EMPLOYEE
     if user.role == "employee":
         managers = db.query(User).filter(User.role == "manager").all()
 
@@ -167,7 +167,7 @@ def approve_leave(
     leave = db.query(Leave).filter(Leave.id == leave_id).first()
     approver = db.query(User).filter(User.id == approver_id).first()
     applicant = db.query(User).filter(User.id == leave.user_id).first()
-    # ✅ Manager can approve ONLY their team
+    # Manager can approve ONLY their team
     if approver.role == "manager":
         if applicant.manager_id != approver.id:
             raise HTTPException(
@@ -241,7 +241,7 @@ def reject_leave(
     leave = db.query(Leave).filter(Leave.id == leave_id).first()
     approver = db.query(User).filter(User.id == approver_id).first()
     applicant = db.query(User).filter(User.id == leave.user_id).first()
-    # ✅ Manager can reject ONLY their team
+    # Manager can reject ONLY their team
     if approver.role == "manager":
         if applicant.manager_id != approver.id:
             raise HTTPException(
